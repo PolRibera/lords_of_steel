@@ -13,5 +13,6 @@ public class Lords_of_steel {
 
     public static void main(String[] args) {
         System.out.println("Hello World!");
+        System.out.println("proba");
     }
 }
