@@ -12,7 +12,8 @@ package com.mycompany.lords_of_steel;
 public class Lords_of_steel {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
-        System.out.println("proba");
+        Arma arma = new Arma("Espasa");
+        Nan n1 = new Nan(10,5,7,4,9,arma);
+        
     }
 }
