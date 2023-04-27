@@ -15,7 +15,7 @@ public class Huma extends Personatge{
     }
     
     protected void calculDeEstadistiquesDerivades() {
-        super.calculDeEstadistiquesDerivades();
+        super.calculDeEstadistiquesDerivades();        
         ps=constitucio+força+inteligencia;
 
     }

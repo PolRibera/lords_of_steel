@@ -16,7 +16,7 @@ public class Maia extends Personatge{
     }
     
     protected void calculDeEstadistiquesDerivades() {
-        super.calculDeEstadistiquesDerivades();
+        super.calculDeEstadistiquesDerivades();        
         pe=velocitat+sort+inteligencia+força;
 
     }

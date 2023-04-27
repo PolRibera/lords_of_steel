@@ -14,9 +14,10 @@ public class Nan extends Personatge{
         super(força,constitucio,velocitat,intelligencia,sort,arma);
     }
     
+    @Override
     protected void calculDeEstadistiquesDerivades() {
         super.calculDeEstadistiquesDerivades();
-        pd=(força+arma.wpow+constitucio)/4;
+        pd=(força+arma.getWpow()+constitucio)/4;
 
     }
 

@@ -12,8 +12,9 @@ package com.mycompany.lords_of_steel;
 public class Lords_of_steel {
 
     public static void main(String[] args) {
-        Arma arma = new Arma("Espasa");
-        Nan n1 = new Nan(10,5,7,4,9,arma);
+        Nan n1 = new Nan(8,6,13,16,16,new Arma("Daga"));
+        System.out.println("Els punts de dany del nan es: "+n1.getPd());
+        System.out.println("Els punts de salud del nan es: "+n1.getPs());
         
     }
 }

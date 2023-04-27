@@ -34,6 +34,14 @@ public class Arma {
 
     }
 
+    public int getWpow() {
+        return wpow;
+    }
+
+    public int getWvel() {
+        return wvel;
+    }
+
     public String getNomArma() {
         return nomArma;
     }

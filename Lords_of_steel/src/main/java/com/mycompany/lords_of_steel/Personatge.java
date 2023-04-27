@@ -19,10 +19,10 @@ public abstract class Personatge {
     
     //Estadistiques derivades
     
-    protected double ps; // punts de salut
-    protected double pd; // punts de dany
-    protected double pa; // prob. d'atacar
-    protected double pe; // prob. d'esquivar
+    protected int ps; // punts de salut
+    protected int pd; // punts de dany
+    protected int pa; // prob. d'atacar
+    protected int pe; // prob. d'esquivar
     
     public Personatge(int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma) {
         this.força          =força;
@@ -38,44 +38,44 @@ public abstract class Personatge {
 
     protected void calculDeEstadistiquesDerivades() {
         ps=constitucio+força;
-        pd=(força+arma.wpow)/4;
-        pa=inteligencia+sort;
+        pd=(força+arma.getWpow())/4;
+        pa=inteligencia+sort+arma.getWvel();
         pe=velocitat+sort+inteligencia;
     }
     
-    public double getForça() {
+    public int getForça() {
         return força;
     }
 
-    public double getConstitucio() {
+    public int getConstitucio() {
         return constitucio;
     }
 
-    public double getVelocitat() {
+    public int getVelocitat() {
         return velocitat;
     }
 
-    public double getIntelligencia() {
+    public int getIntelligencia() {
         return inteligencia;
     }
 
-    public double getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public double getPs() {
+    public int getPs() {
         return ps;
     }
 
-    public double getPd() {
+    public int getPd() {
         return pd;
     }
 
-    public double getPa() {
+    public int getPa() {
         return pa;
     }
 
-    public double getPe() {
+    public int getPe() {
         return pe;
     }
     
