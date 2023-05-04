@@ -10,6 +10,7 @@ package com.mycompany.lords_of_steel;
  * @author polri
  */
 public abstract class Personatge {
+    protected String nom;
     protected int força;
     protected int constitucio;
     protected int velocitat;
@@ -24,7 +25,8 @@ public abstract class Personatge {
     protected int pa; // prob. d'atacar
     protected int pe; // prob. d'esquivar
     
-    public Personatge(int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma) {
+    public Personatge(String nom,int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma) {
+        this.nom            =nom;
         this.força          =força;
         this.constitucio    =constitucio;
         this.velocitat      =velocitat;
@@ -33,6 +35,50 @@ public abstract class Personatge {
         this.arma=arma;
         
         calculDeEstadistiquesDerivades();
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setForça(int força) {
+        this.força = força;
+    }
+
+    public void setConstitucio(int constitucio) {
+        this.constitucio = constitucio;
+    }
+
+    public void setVelocitat(int velocitat) {
+        this.velocitat = velocitat;
+    }
+
+    public void setInteligencia(int inteligencia) {
+        this.inteligencia = inteligencia;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+
+    public void setArma(Arma arma) {
+        this.arma = arma;
+    }
+
+    public void setPs(int ps) {
+        this.ps = ps;
+    }
+
+    public void setPd(int pd) {
+        this.pd = pd;
+    }
+
+    public void setPa(int pa) {
+        this.pa = pa;
+    }
+
+    public void setPe(int pe) {
+        this.pe = pe;
     }
 
 
@@ -61,6 +107,18 @@ public abstract class Personatge {
 
     public int getSort() {
         return sort;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public int getInteligencia() {
+        return inteligencia;
+    }
+
+    public Arma getArma() {
+        return arma;
     }
 
     public int getPs() {

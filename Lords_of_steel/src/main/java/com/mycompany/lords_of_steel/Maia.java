@@ -11,8 +11,8 @@ package com.mycompany.lords_of_steel;
  * @author polri
  */
 public class Maia extends Personatge{
-    public Maia(int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma){
-        super(força,constitucio,velocitat,intelligencia,sort,arma);
+    public Maia(String nom,int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma){
+        super(nom,força,constitucio,velocitat,intelligencia,sort,arma);
     }
     
     protected void calculDeEstadistiquesDerivades() {
@@ -23,6 +23,6 @@ public class Maia extends Personatge{
     
     @Override
     public void mostrarNomTipus() {
-        System.out.println("Nan");
+        System.out.println("Maia");
     }
 }

@@ -10,8 +10,8 @@ package com.mycompany.lords_of_steel;
  * @author polri
  */
 public class Nan extends Personatge{
-    public Nan(int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma){
-        super(força,constitucio,velocitat,intelligencia,sort,arma);
+    public Nan(String nom,int força, int constitucio, int velocitat, int intelligencia, int sort, Arma arma){
+        super(nom,força,constitucio,velocitat,intelligencia,sort,arma);
     }
     
     @Override
