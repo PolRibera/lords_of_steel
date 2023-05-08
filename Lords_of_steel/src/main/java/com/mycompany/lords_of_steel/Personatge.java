@@ -136,7 +136,17 @@ public abstract class Personatge {
     public int getPe() {
         return pe;
     }
-    
+
+    public void restauraPS(){
+        this.ps = (int)(this.ps *1.1);
+    }
+     public boolean Contraatact(Dau ... d){
+       int valor = d[0].llencar()+d[1].llencar()+d[2].llencar();
+        if (valor<=(this.getPa()/2))
+            return true;
+        else
+            return false;
+    }    
         public abstract void mostrarNomTipus();
     
 }
