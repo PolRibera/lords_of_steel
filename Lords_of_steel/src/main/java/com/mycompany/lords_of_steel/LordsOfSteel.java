@@ -70,7 +70,9 @@ public class LordsOfSteel {
             System.out.print("Tria un personatge " + i + ": ");
             int opcio = sc.nextInt();
             personatgesActius[opcio - 1] = true;
+            
             System.out.println("Personatge triat: " + personatges.get(opcio - 1).getNom());
+            lluitadors[i-1]=personatges.get(opcio - 1);
           
         }
         Personatge atacant = lluitadors[0];
@@ -78,20 +80,34 @@ public class LordsOfSteel {
         Dau dau1 = new Dau();
         Dau dau2 = new Dau();
         Dau dau3 = new Dau();
-        int valor = dau1.llencar()+dau2.llencar()+dau3.llencar();
+        
+        do {
+            int valor = dau1.llencar()+dau2.llencar()+dau3.llencar();
 
             System.out.println("Valor dels daus: "+valor);
             
-            if (atacant.getPa()<=valor) {
-            valor = dau1.llencar()+dau2.llencar()+dau3.llencar();}
-            if (valor > defensor.getPe()) {
-                defensor.setPs(defensor.getPs()-atacant.getPd());
+            if (valor<=atacant.getPa()) {
+                System.out.println(atacant.getNom()+" pot atacar");
+                    int valor2 = dau1.llencar()+dau2.llencar()+dau3.llencar();
+                if (valor2 > defensor.getPe()) {
+                    System.out.println(defensor.getNom()+" no ha pogut esquivar l'atac");
+                    defensor.setPs(defensor.getPs()-atacant.getPd());
+                    if (defensor.getPs()>0) {
+                       System.out.println(defensor.getNom()+" s'ha quedat amb "+defensor.getPs()+" punts de salut");
+                    } else
+                        System.out.println(defensor.getNom()+" ha mort!");
+                } else
+                    System.out.println(defensor.getNom()+" ha pogut esquivar l'atac");
+
+            } else {
+                System.out.println(atacant.getNom()+" no pot atacar");
             }
-            
             
         Personatge aux = atacant;
         atacant=defensor;
         defensor=aux;
+        } while (defensor.getPs()>0 &&  atacant.getPs()>0);
+        
 
     }    
 }
