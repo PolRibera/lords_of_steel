@@ -15,7 +15,7 @@ public class LordsOfSteel {
         personatges.add(h1);
         personatges.add(mi1);
         personatges.add(ma1);
-        
+        System.out.println("");
         /* Menu principal */
         System.out.println("");
         System.out.println("* Menú principal *");
