@@ -209,7 +209,52 @@ public class LordsOfSteel {
             personatgesActius[opcio - 1] = true;
 
             System.out.println("Personatge triat: " + personatges.get(opcio - 1).getNom());
-            lluitadors[i - 1] = personatges.get(opcio - 1);
+            System.out.print("Escull la devocio del personatge [Caos / Ordre]: ");
+            String devocio = sc.next();
+            if (devocio.toLowerCase().equals("ordre")) {
+                switch (personatges.get(opcio - 1).mostrarNomTipus()){
+                    case "Nan":
+                            NanOrdre NO1 = new NanOrdre(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = NO1;
+                            break;
+                    case "Humà":
+                            HumaOrdre HO1 = new HumaOrdre(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = HO1;
+                            break;
+                    case "Mitjà":
+                            MitjaOrdre MO1 = new MitjaOrdre(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = MO1;
+                            break;
+                    case "Maia":
+                            MaiaOrdre MaO1 = new MaiaOrdre(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = MaO1;                       
+                            break;
+                    default:
+                            break;
+                }
+            } else if (devocio.toLowerCase().equals("caos")) {
+                  switch (personatges.get(opcio - 1).mostrarNomTipus()){
+                    case "Nan":
+                            NanCaos NC1 = new NanCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = NC1;
+                            break;
+                    case "Humà":
+                            HumaCaos HC1 = new HumaCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = HC1;
+                            break;
+                    case "Mitjà":
+                            MitjaCaos MC1 = new MitjaCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = MC1;
+                            break;
+                    case "Maia":
+                            MaiaCaos MaC1 = new MaiaCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            lluitadors[i - 1] = MaC1;
+                            break;
+                    default:
+                            break;
+                }
+            }
+            
 
         }
         Personatge atacant = lluitadors[0];
@@ -219,6 +264,7 @@ public class LordsOfSteel {
         Dau dau3 = new Dau();
 
         do {
+                        sc.nextLine();
             int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
             System.out.println("Valor dels daus: " + valor);
 
@@ -228,13 +274,28 @@ public class LordsOfSteel {
                 if (valor2 > defensor.getPe()) {
                     System.out.println( defensor.getNom() + " no ha pogut esquivar l'atac" );
                     defensor.setPs(defensor.getPs() - atacant.getPd());
+                        if (atacant instanceof Ordre) {
+                            atacant.restauraPS();
+                            System.out.println(atacant.getNom()+" ha restaurat un 10% de PS ja que te equipada la devocio Ordre");
+                            System.out.println(atacant.getNom() + " s'ha quedat amb " + atacant.getPs() + " punts de salut");
+                            
+                        }
                     if (defensor.getPs() > 0) {
                         System.out.println(defensor.getNom() + " s'ha quedat amb " + defensor.getPs() + " punts de salut");
-                        sc.nextLine();
                     } else
                         System.out.println( defensor.getNom() + " ha mort!"  );
-                } else
+                } else {
                     System.out.println(defensor.getNom() + " ha pogut esquivar l'atac"  );
+                        if (defensor instanceof Caos) {
+                               if (defensor.Contraatact(dau1,dau2,dau3)) {
+                                System.out.println(defensor.getNom()+" ha pogut contraatacar!");
+                                atacant.setPs(atacant.getPs() - (defensor.getPd()/2));
+                                System.out.println(atacant.getNom() + " s'ha quedat amb " + atacant.getPs() + " punts de salut");
+                            } else {
+                                   System.out.println(defensor.getNom()+" no ha pogut contraatacar!");
+                               }
+                        }
+                }
 
             } else {
                 System.out.println(atacant.getNom() + " no pot atacar");
@@ -243,6 +304,7 @@ public class LordsOfSteel {
             Personatge aux = atacant;
             atacant = defensor;
             defensor = aux;
+
         } while (defensor.getPs() > 0 && atacant.getPs() > 0);
 
     }

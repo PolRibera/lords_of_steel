@@ -22,7 +22,7 @@ public class Maia extends Personatge{
     }
     
     @Override
-    public void mostrarNomTipus() {
-        System.out.println("Maia");
+    public String mostrarNomTipus() {
+        return "Maia";
     }
 }

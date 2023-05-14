@@ -21,7 +21,7 @@ public class Mitja extends Personatge{
 
     }
     @Override
-    public void mostrarNomTipus() {
-        System.out.println("Mitja");
+    public String mostrarNomTipus() {
+        return "Mitjà";
     }
 }

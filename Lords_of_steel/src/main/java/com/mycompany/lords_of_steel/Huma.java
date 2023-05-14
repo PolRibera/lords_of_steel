@@ -21,7 +21,7 @@ public class Huma extends Personatge{
     }
     
     @Override
-    public void mostrarNomTipus() {
-        System.out.println("Humà");
+    public String mostrarNomTipus() {
+        return "Humà";
     }
 }

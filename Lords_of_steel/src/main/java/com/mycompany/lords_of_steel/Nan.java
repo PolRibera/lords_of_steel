@@ -22,7 +22,7 @@ public class Nan extends Personatge{
     }
 
     @Override
-    public void mostrarNomTipus() {
-        System.out.println("Nan");
+    public String mostrarNomTipus() {
+        return "Nan";
     }
 }

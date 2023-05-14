@@ -18,7 +18,13 @@ public abstract class Personatge {
     protected int sort;
     protected Arma arma;
     
+    protected int EXP = 0;
+    protected int LVL = 1;
+    protected int MAXVL = 5;
+    protected int[] MAXEXPLVL = {100,200,500,1000,2000};
+    
     //Estadistiques derivades
+
     
     protected int ps; // punts de salut
     protected int pd; // punts de dany
@@ -136,6 +142,38 @@ public abstract class Personatge {
     public int getPe() {
         return pe;
     }
+    
+    public void setEXP(int EXP) {
+        this.EXP = EXP;
+    }
+
+    public void setLVL(int LVL) {
+        this.LVL = LVL;
+    }
+
+    public void setMAXVL(int MAXVL) {
+        this.MAXVL = MAXVL;
+    }
+
+    public void setMAXEXPLVL(int[] MAXEXPLVL) {
+        this.MAXEXPLVL = MAXEXPLVL;
+    }
+    
+     public int getEXP() {
+        return EXP;
+    }
+
+    public int getLVL() {
+        return LVL;
+    }
+
+    public int getMAXVL() {
+        return MAXVL;
+    }
+
+    public int[] getMAXEXPLVL() {
+        return MAXEXPLVL;
+    }
 
     public void restauraPS(){
         this.ps = (int)(this.ps *1.1);
@@ -147,6 +185,6 @@ public abstract class Personatge {
         else
             return false;
     }    
-        public abstract void mostrarNomTipus();
+        public abstract String mostrarNomTipus();
     
 }
