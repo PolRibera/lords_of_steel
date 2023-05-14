@@ -94,19 +94,24 @@ public class LordsOfSteel {
 
         Personatge nou = null;
         tipus= tipus.toLowerCase();
-        if (tipus.equals("huma")) {
-            nou = new Huma(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
-        } else if (tipus.equals("mitja")) {
-            nou = new Mitja(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
-        } else if (tipus.equals("nan")) {
-            nou = new Nan(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
-        } else if (tipus.equals("maia")) {
-            nou = new Maia(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
-        }
+            if (força+cons+vel+intel+sort<=60) {
+                if (tipus.equals("huma")) {
+                nou = new Huma(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
+            } else if (tipus.equals("mitja")) {
+                nou = new Mitja(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
+            } else if (tipus.equals("nan")) {
+                nou = new Nan(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
+            } else if (tipus.equals("maia")) {
+                nou = new Maia(nom.toLowerCase(), força, cons, vel, intel, sort, new Arma(arma.toLowerCase()));
+            }
 
-        personatges.add(nou);
-        mostraPersonatges(personatges);
-        System.out.println("Personatge afegit amb èxit!");
+            personatges.add(nou);
+            mostraPersonatges(personatges);
+            System.out.println("Personatge afegit amb èxit!");
+        } else {
+                System.out.println("Els punts maxim per el personatge nou son 60 punts");
+            }
+        
     }
 
     public static void borrarPersonatge(ArrayList<Personatge> personatges) {
@@ -131,6 +136,8 @@ public class LordsOfSteel {
         System.out.println("");
         System.out.println("Nom: " + personatge.getNom());
         System.out.println("Tipus: " + personatge.getClass().getSimpleName());
+        System.out.println("Nivell: "+personatge.getLVL());
+        System.out.println("EXP: "+personatge.getEXP());
         System.out.println("Força: " + personatge.getForça());
         System.out.println("Consistencia: " + personatge.getConstitucio());
         System.out.println("Velocitat: " + personatge.getVelocitat());
@@ -146,6 +153,7 @@ public class LordsOfSteel {
         System.out.print("Tipus (" + personatge.getClass().getSimpleName() + "): ");
         String tipus = sc.next();
         
+        System.out.println("Punts Maxim: "+personatge.getMAXp());
         if (!tipus.isEmpty()) {
             System.out.print("Força: ");
             int força = Integer.parseInt(sc.next());
@@ -165,7 +173,7 @@ public class LordsOfSteel {
             System.out.print("Arma [Daga,Espasa,Martell]:");
             String arma = sc.next();
 
-            
+          if (força+cons+vel+intel+sort<=personatges.get(index).getMAXp()) {  
             if (tipus.equalsIgnoreCase("huma")) {
                 personatges.set(index, new Huma(nom, força, cons, vel, intel, sort,new Arma(arma)));
             } else if (tipus.equalsIgnoreCase("mitja")) {
@@ -176,7 +184,11 @@ public class LordsOfSteel {
                 personatges.set(index, new Maia(nom, força, cons, vel, intel, sort,new Arma(arma)));
             } else {
                 System.out.println("El tipus introduit no és vàlid.");
-            }
+            } 
+           } else {
+              System.out.println("Has superat el numero de punts maxim per aquest personatge.");
+          }
+          personatges.get(index).calculDeEstadistiquesDerivades();
         }
 
     }
@@ -262,7 +274,8 @@ public class LordsOfSteel {
         Dau dau1 = new Dau();
         Dau dau2 = new Dau();
         Dau dau3 = new Dau();
-
+        Personatge guanyador;
+        Personatge perdedor;
         do {
                         sc.nextLine();
             int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
@@ -283,14 +296,21 @@ public class LordsOfSteel {
                     if (defensor.getPs() > 0) {
                         System.out.println(defensor.getNom() + " s'ha quedat amb " + defensor.getPs() + " punts de salut");
                     } else
-                        System.out.println( defensor.getNom() + " ha mort!"  );
+                        System.out.println( defensor.getNom() + " ha mort!");
+                        guanyador = atacant;
+                        perdedor = defensor;
                 } else {
                     System.out.println(defensor.getNom() + " ha pogut esquivar l'atac"  );
                         if (defensor instanceof Caos) {
                                if (defensor.Contraatact(dau1,dau2,dau3)) {
                                 System.out.println(defensor.getNom()+" ha pogut contraatacar!");
                                 atacant.setPs(atacant.getPs() - (defensor.getPd()/2));
-                                System.out.println(atacant.getNom() + " s'ha quedat amb " + atacant.getPs() + " punts de salut");
+                                if (atacant.getPs() > 0) {
+                                    System.out.println(atacant.getNom() + " s'ha quedat amb " + atacant.getPs() + " punts de salut");
+                                } else
+                                    System.out.println( atacant.getNom() + " ha mort!");
+                                    guanyador = defensor;
+                                    perdedor = atacant;
                             } else {
                                    System.out.println(defensor.getNom()+" no ha pogut contraatacar!");
                                }
@@ -306,7 +326,8 @@ public class LordsOfSteel {
             defensor = aux;
 
         } while (defensor.getPs() > 0 && atacant.getPs() > 0);
-
+        
+        
     }
 
     private static void mostraPersonatges(ArrayList<Personatge> personatges) {

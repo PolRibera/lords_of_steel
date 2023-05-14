@@ -19,13 +19,13 @@ public abstract class Personatge {
     protected Arma arma;
     
     protected int EXP = 0;
-    protected int LVL = 1;
+    protected int LVL = 0;
     protected int MAXVL = 5;
     protected int[] MAXEXPLVL = {100,200,500,1000,2000};
     
     //Estadistiques derivades
 
-    
+    protected int MAXp = 60;
     protected int ps; // punts de salut
     protected int pd; // punts de dany
     protected int pa; // prob. d'atacar
@@ -155,6 +155,10 @@ public abstract class Personatge {
         this.MAXVL = MAXVL;
     }
 
+    public int getMAXp() {
+        return MAXp;
+    }
+
     public void setMAXEXPLVL(int[] MAXEXPLVL) {
         this.MAXEXPLVL = MAXEXPLVL;
     }
@@ -177,6 +181,28 @@ public abstract class Personatge {
 
     public void restauraPS(){
         this.ps = (int)(this.ps *1.1);
+    }
+    
+    public void pujarEXP(int PSRival){
+        this.setEXP(this.getEXP()+PSRival);
+        if (this.getEXP()>=this.MAXEXPLVL[this.getLVL()]) {
+            this.setLVL(this.getLVL()+1);
+            this.setEXP(this.getEXP()-this.MAXEXPLVL[this.getLVL()-1]);
+            System.out.println(this.getNom()+" ha pujat al nivell "+this.getLVL()+"!");
+            this.setMAXp(this.getMAXp()+5);
+            this.setForça(this.getForça()+1);
+            this.setConstitucio(this.getConstitucio()+1);
+            this.setVelocitat(this.getVelocitat()+1);
+            this.setInteligencia(this.getInteligencia()+1);
+            this.setSort(this.getSort()+1);
+            this.calculDeEstadistiquesDerivades();
+            
+        }
+        System.out.println("El nivell de "+this.getNom()+" es "+this.getLVL()+" i el EXP es "+this.getEXP());
+    }
+
+    public void setMAXp(int MAXp) {
+        this.MAXp = MAXp;
     }
      public boolean Contraatact(Dau ... d){
        int valor = d[0].llencar()+d[1].llencar()+d[2].llencar();
