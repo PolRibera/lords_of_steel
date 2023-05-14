@@ -274,8 +274,8 @@ public class LordsOfSteel {
         Dau dau1 = new Dau();
         Dau dau2 = new Dau();
         Dau dau3 = new Dau();
-        Personatge guanyador;
-        Personatge perdedor;
+        Personatge guanyador=atacant;
+        Personatge perdedor=defensor;
         do {
                         sc.nextLine();
             int valor = dau1.llencar() + dau2.llencar() + dau3.llencar();
@@ -326,8 +326,17 @@ public class LordsOfSteel {
             defensor = aux;
 
         } while (defensor.getPs() > 0 && atacant.getPs() > 0);
-        
-        
+        int MAXPsPerdedor=0;
+        for (int i = 0; i < personatges.size(); i++) {
+            if (personatges.get(i).getNom().equals(perdedor.getNom())) {
+                MAXPsPerdedor=personatges.get(i).getPs();
+            }
+        }
+        for (int i = 0; i < personatges.size(); i++) {
+            if (personatges.get(i).getNom().equals(guanyador.getNom())) {
+                personatges.get(i).pujarEXP(MAXPsPerdedor);
+            }
+        }
     }
 
     private static void mostraPersonatges(ArrayList<Personatge> personatges) {
