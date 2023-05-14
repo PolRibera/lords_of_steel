@@ -15,17 +15,17 @@ public class Arma {
     protected String nomArma;
     
     public Arma(String tipus){
-        this.nomArma=tipus;
-        switch(tipus){
-            case "Daga":
+        this.nomArma=tipus.toLowerCase();
+        switch(tipus.toLowerCase()){
+            case "daga":
                     this.wpow=5;
                     this.wvel=15;
                     break;
-            case "Espasa":
+            case "espasa":
                     this.wpow=10;
                     this.wvel=10;
                     break;
-            case "Martell":
+            case "martell":
                     this.wpow=15;
                     this.wvel=5;
                     break;
