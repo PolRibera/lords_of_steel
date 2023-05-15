@@ -334,7 +334,7 @@ public class LordsOfSteel {
         }
         for (int i = 0; i < personatges.size(); i++) {
             if (personatges.get(i).getNom().equals(guanyador.getNom())) {
-                personatges.get(i).pujarEXP(MAXPsPerdedor);
+                personatges.get(i).pujarEXP(MAXPsPerdedor*10);
             }
         }
     }

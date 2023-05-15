@@ -185,7 +185,7 @@ public abstract class Personatge {
     
     public void pujarEXP(int PSRival){
         this.setEXP(this.getEXP()+PSRival);
-        if (this.getEXP()>=this.MAXEXPLVL[this.getLVL()]) {
+        while (this.getEXP()>=this.MAXEXPLVL[this.getLVL()]) {
             this.setLVL(this.getLVL()+1);
             this.setEXP(this.getEXP()-this.MAXEXPLVL[this.getLVL()-1]);
             System.out.println(this.getNom()+" ha pujat al nivell "+this.getLVL()+"!");
