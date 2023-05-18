@@ -221,6 +221,8 @@ public class LordsOfSteel {
             personatgesActius[opcio - 1] = true;
 
             System.out.println("Personatge triat: " + personatges.get(opcio - 1).getNom());
+            boolean sortirBucleDevocio = false;
+            while(!sortirBucleDevocio){
             System.out.print("Escull la devocio del personatge [Caos / Ordre]: ");
             String devocio = sc.next();
             if (devocio.toLowerCase().equals("ordre")) {
@@ -244,6 +246,7 @@ public class LordsOfSteel {
                     default:
                             break;
                 }
+                sortirBucleDevocio=true;
             } else if (devocio.toLowerCase().equals("caos")) {
                   switch (personatges.get(opcio - 1).mostrarNomTipus()){
                     case "Nan":
@@ -255,18 +258,19 @@ public class LordsOfSteel {
                             lluitadors[i - 1] = HC1;
                             break;
                     case "Mitjà":
-                            MitjaCaos MC1 = new MitjaCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            MitjaCaos MC1 = new MitjaCaos(personatges.get((opcio - 1)).getNom(), personatges.get((opcio - 1)).getForça(), personatges.get((opcio - 1)).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
                             lluitadors[i - 1] = MC1;
                             break;
                     case "Maia":
-                            MaiaCaos MaC1 = new MaiaCaos(personatges.get(opcio - 1).getNom(), personatges.get(opcio - 1).getForça(), personatges.get(opcio - 1).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
+                            MaiaCaos MaC1 = new MaiaCaos(personatges.get((opcio - 1)).getNom(), personatges.get((opcio - 1)).getForça(), personatges.get((opcio - 1)).getConstitucio(), personatges.get(opcio - 1).getVelocitat(), personatges.get(opcio - 1).getInteligencia(), personatges.get(opcio - 1).getSort(),personatges.get(opcio - 1).getArma());
                             lluitadors[i - 1] = MaC1;
                             break;
                     default:
                             break;
                 }
+                sortirBucleDevocio=true;
             }
-            
+            }
 
         }
         Personatge atacant = lluitadors[0];
